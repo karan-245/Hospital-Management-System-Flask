@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Hospital Management System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="menu">
+<a href="/dashboard">Dashboard</a>
+<a href="/add_department">Add Department</a>
+<a href="/view_departments">Departments</a>
+<a href="/add_doctor">Add Doctor</a>
+<a href="/view_doctors">Doctors</a>
+<a href="/add_patient">Add Patient</a>
+<a href="/view_patients">Patients</a>
+<a href="/book_appointment">Book Appointment</a>
+<a href="/view_appointments">Appointments</a>
+<a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+
+{% if page == "dashboard" %}
+
+<h1>Dashboard</h1>
+
+<div class="card">
+Total Patients<br>
+<b>{{ patients }}</b>
+</div>
+
+<div class="card">
+Total Doctors<br>
+<b>{{ doctors }}</b>
+</div>
+
+<div class="card">
+Total Appointments<br>
+<b>{{ appointments }}</b>
+</div>
+
+{% elif page == "add_department" %}
+
+<h2>Add Department</h2>
+
+<form method="POST">
+<input type="text" name="name" placeholder="Department Name" required>
+<button type="submit">Add Department</button>
+</form>
+
+{% elif page == "view_departments" %}
+
+<h2>Departments</h2>
+
+<table>
+<tr>
+<th>ID</th>
+<th>Name</th>
+</tr>
+
+{% for d in departments %}
+
+<tr>
+<td>{{ d[0] }}</td>
+<td>{{ d[1] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% elif page == "add_doctor" %}
+
+<h2>Add Doctor</h2>
+
+<form method="POST">
+
+<input type="text" name="name" placeholder="Doctor Name" required>
+
+<input type="text" name="specialization" placeholder="Specialization" required>
+
+<select name="dept_id">
+
+{% for d in departments %}
+
+<option value="{{ d[0] }}">{{ d[1] }}</option>
+
+{% endfor %}
+
+</select>
+
+<button type="submit">Add Doctor</button>
+
+</form>
+
+{% elif page == "view_doctors" %}
+
+<h2>Doctors</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Department</th>
+<th>Specialization</th>
+</tr>
+
+{% for d in doctors %}
+
+<tr>
+<td>{{ d[0] }}</td>
+<td>{{ d[1] }}</td>
+<td>{{ d[2] }}</td>
+<td>{{ d[3] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% elif page == "add_patient" %}
+
+<h2>Add Patient</h2>
+
+<form method="POST">
+
+<input type="text" name="name" placeholder="Patient Name" required>
+
+<input type="number" name="age" placeholder="Age" required>
+
+<select name="gender">
+
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+
+<input type="text" name="contact" placeholder="Contact Number" required>
+
+<button type="submit">Add Patient</button>
+
+</form>
+
+{% elif page == "view_patients" %}
+
+<h2>Patients</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Contact</th>
+</tr>
+
+{% for p in patients %}
+
+<tr>
+<td>{{ p[0] }}</td>
+<td>{{ p[1] }}</td>
+<td>{{ p[2] }}</td>
+<td>{{ p[3] }}</td>
+<td>{{ p[4] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% elif page == "book_appointment" %}
+
+<h2>Book Appointment</h2>
+
+<form method="POST">
+
+<select name="patient_id">
+
+{% for p in patients %}
+
+<option value="{{ p[0] }}">{{ p[1] }}</option>
+
+{% endfor %}
+
+</select>
+
+<select name="doctor_id">
+
+{% for d in doctors %}
+
+<option value="{{ d[0] }}">{{ d[1] }}</option>
+
+{% endfor %}
+
+</select>
+
+<input type="date" name="date" required>
+
+<input type="time" name="time" required>
+
+<button type="submit">Book Appointment</button>
+
+</form>
+
+{% elif page == "view_appointments" %}
+
+<h2>Appointments</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Patient</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+
+{% for a in appointments %}
+
+<tr>
+<td>{{ a[0] }}</td>
+<td>{{ a[1] }}</td>
+<td>{{ a[2] }}</td>
+<td>{{ a[3] }}</td>
+<td>{{ a[4] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
