@@ -1,1 +1,1 @@
-# Hospital-Management-System-Flask
+This project is a simple Hospital Management System developed using Python Flask and MySQL database. The system allows an administrator to manage hospital data such as departments, doctors, patients, and appointments through a web interface.
