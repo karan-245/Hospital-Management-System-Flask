@@ -2,13 +2,13 @@ CREATE DATABASE HospitalDB;
 
 USE HospitalDB;
 
--- Department Table
+
 CREATE TABLE Department (
     dept_id INT AUTO_INCREMENT PRIMARY KEY,
     dept_name VARCHAR(100) NOT NULL
 );
 
--- Doctor Table
+
 CREATE TABLE Doctor (
     doctor_id INT AUTO_INCREMENT PRIMARY KEY,
     doctor_name VARCHAR(100),
@@ -17,7 +17,7 @@ CREATE TABLE Doctor (
     FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
 );
 
--- Patient Table
+
 CREATE TABLE Patient (
     patient_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_name VARCHAR(100),
@@ -26,7 +26,7 @@ CREATE TABLE Patient (
     contact_no VARCHAR(15)
 );
 
--- Appointment Table
+
 CREATE TABLE Appointment (
     appointment_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT,
