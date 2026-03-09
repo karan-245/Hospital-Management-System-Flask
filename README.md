@@ -1,4 +1,4 @@
-Hospital Management System (Flask)
+## Hospital Management System (Flask)
 
 A web-based Hospital Management System developed using Python Flask.
 This project helps manage hospital operations such as departments, doctors, and patient-related information through an easy-to-use web interface.
